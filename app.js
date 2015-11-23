@@ -108,7 +108,7 @@ var factor2 = document.getElementById("factor2");
 
 document.getElementById('form_event3').addEventListener("submit", function(e) {
   e.preventDefault();
-  var multiples = []
+  var multiples = [];
   for (var i=1; i<parseInt(limit.value); i++) {
     if ((i % parseInt(factor1.value) === 0) || (i % parseInt(factor2.value) === 0)) {
       multiples.push(i);
@@ -123,11 +123,41 @@ var fibLimit = document.getElementById("fib-limit");
 
 document.getElementById('form_event4').addEventListener("submit", function(e) {
   e.preventDefault();
-
-
-
-  alert(result);
+  var num1=0,num2=1,sum=0;
+  for (i=num1+num2; i<parseInt(fibLimit.value); i=num1+num2) {
+    if ((i % 2) === 0) {
+      sum+=i;
+    };
+    num1=num2;
+    num2=i;
+  };
+  alert(sum);
 });
 
+
+function isPrime(num) {
+  var prime = true
+  for (i=2; i<num; i++) {
+    if ((num%i===0)&&(num!=i)) {
+      prime = false
+    };
+  };
+  return prime
+}
+
+var findPrimesOf = document.getElementById('find-primes');
+
+document.getElementById('form_event5').addEventListener("submit", function(e) {
+  e.preventDefault();
+  var numPrime = parseInt(findPrimesOf.value)
+  var largestPrime = 0;
+  for (i=0; i<=numPrime; i++) {
+    if (isPrime(i) && (numPrime%i===0)) {
+      largestPrime = i;
+      numPrime /= i;
+    };
+  };
+  alert(largestPrime);
+});
 
 
